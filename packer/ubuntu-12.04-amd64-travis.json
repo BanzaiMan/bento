@@ -100,8 +100,8 @@
       "vm_name": "packer-ubuntu-12.04-amd64",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
-        "memsize": "384",
-        "numvcpus": "1"
+        "memsize": "2048",
+        "numvcpus": "2"
       }
     },
     {
