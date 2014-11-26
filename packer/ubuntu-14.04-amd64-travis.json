@@ -165,7 +165,7 @@
   ],
   "post-processors": [
     {
-      "output": "../builds/{{.Provider}}/opscode_ubuntu-14.04_chef-{{user `chef_version`}}.box",
+      "output": "../builds/{{.Provider}}/travis_ubuntu-14.04_chef-{{user `chef_version`}}.box",
       "type": "vagrant"
     }
   ],
