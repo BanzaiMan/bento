@@ -30,7 +30,13 @@ Each builder is configured to use 2 GB of memory and 2 CPUs.
 Unless you're on a very large system, use of `-parallel=false`
 is recommended.
 
+In addition, it is assumed that you have cloned `travis-cookbooks` to the same directory
+as `bento`.
+
 ```
+git clone https://github.com/travis-ci/travis-cookbooks.git
+git clone https://github.com/BanzaiMan/bento.git
+cd bento
 wget -O iso/ubuntu/12.04/ubuntu-12.04.5-server-amd64.iso http://releases.ubuntu.com/12.04.5/ubuntu-12.04.5-server-amd64.iso
 cd packer
 packer build -parallel=false ubuntu-12.04-amd64-travis.json
