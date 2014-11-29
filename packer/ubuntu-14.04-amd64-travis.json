@@ -45,13 +45,13 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "384"
+          "2048"
         ],
         [
           "modifyvm",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "2"
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
@@ -100,8 +100,8 @@
       "vm_name": "packer-ubuntu-14.04-amd64",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
-        "memsize": "384",
-        "numvcpus": "1"
+        "memsize": "2048",
+        "numvcpus": "2"
       }
     },
     {
@@ -149,13 +149,13 @@
           "set",
           "{{.Name}}",
           "--memsize",
-          "384"
+          "2048"
         ],
         [
           "set",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "2"
         ]
       ],
       "prlctl_version_file": ".prlctl_version",
