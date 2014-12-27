@@ -9,6 +9,20 @@ This fork aims to create Vagrant boxes suitable for use by
 
 ### Usage
 
+#### TL;DR
+
+```
+git clone https://github.com/travis-ci/travis-cookbooks.git
+git clone https://github.com/BanzaiMan/bento.git
+cd bento
+./generate
+wget -O iso/ubuntu/12.04/ubuntu-12.04.5-server-amd64.iso http://releases.ubuntu.com/12.04.5/ubuntu-12.04.5-server-amd64.iso
+cd packer
+packer build -parallel=false [-only=vmware-iso] ubuntu-12.04-amd64-travis.json
+```
+
+-------------
+
 It is assumed that you have cloned `travis-cookbooks` to the same directory
 as `bento`.
 
