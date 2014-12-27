@@ -39,7 +39,7 @@ cd bento
 ./generate [14.04]
 ```
 
-This will generate `packer/ubuntu-12.04-amd64-travis.json`.
+This will [generate `packer/ubuntu-12.04-amd64-travis.json`.][1]
 Optionally, you can pass `14.04` to generate `packer/ubuntu-14.04-amd64-travis.json`.
 
 You will use these Packer templates to generate Vagrant boxes.
@@ -78,3 +78,6 @@ Vagrant.
 
 See https://github.com/travis-ci/travis-cookbooks/blob/master/README.md#vagrant
 for more details.
+
+[1]: Presently, the `system_info` cookbook has problem completing on VMWare provider.
+It is recommended that you remove this cookbook from the runlist.
