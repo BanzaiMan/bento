@@ -16,7 +16,7 @@ yaml_standard = YAML.load_file(File.join(File.dirname(__FILE__), '..', 'travis-c
 travis_provisioner = {
   'type'           => 'chef-solo',
   'cookbook_paths' => [ "../../travis-cookbooks/ci_environment" ],
-  'json'           => ( yaml_common['json']    || {} ).deep_merge( yaml_standard['json']    || {} ),
+  'json'           => ( yaml_common['json']    || {} ).deep_merge( yaml_standard['json']    || {} ).merge({'system_info' => {'cookbooks_sha' => `cd ../travis-cookbooks; git show-ref refs/heads/master -s`.chomp}}),
   'run_list'       => ( yaml_common['recipes'] || [] ).concat(     yaml_standard['recipes'] || [] )
 }
 
