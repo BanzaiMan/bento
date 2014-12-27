@@ -21,19 +21,19 @@
         " netcfg/get_domain=vm<wait>",
         " netcfg/get_hostname=travis<wait>",
         " noapic<wait>",
-        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu-12.04/preseed-travis.cfg<wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu-14.04/preseed-travis.cfg<wait>",
         " -- <wait>",
         "<enter><wait>"
       ],
       "boot_wait": "10s",
       "disk_size": 40960,
-      "guest_additions_path": "VBoxGuestAdditions_{{ .Version }}.iso",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
-      "iso_checksum": "7540ace2d6cdee264432f5ed987236d32edef798",
-      "iso_checksum_type": "sha1",
-      "iso_url": "{{user `iso`}}/ubuntu/12.04/ubuntu-12.04.5-server-amd64.iso",
-      "output_directory": "packer-ubuntu-12.04-amd64-virtualbox",
+      "iso_checksum": "946a6077af6f5f95a51f82fdc44051c7aa19f9cfc5f737954845a6050543d7c2",
+      "iso_checksum_type": "sha256",
+      "iso_url": "{{user `iso`}}/ubuntu/14.04/ubuntu-14.04.1-server-amd64.iso",
+      "output_directory": "packer-ubuntu-14.04-amd64-virtualbox",
       "shutdown_command": "echo 'travis'|sudo -S shutdown -P now",
       "ssh_password": "travis",
       "ssh_port": 22,
@@ -55,7 +55,7 @@
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
-      "vm_name": "packer-ubuntu-12.04-amd64"
+      "vm_name": "packer-ubuntu-14.04-amd64"
     },
     {
       "boot_command": [
@@ -78,7 +78,7 @@
         " netcfg/get_domain=vm<wait>",
         " netcfg/get_hostname=travis<wait>",
         " noapic<wait>",
-        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu-12.04/preseed-travis.cfg<wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu-14.04/preseed-travis.cfg<wait>",
         " -- <wait>",
         "<enter><wait>"
       ],
@@ -86,10 +86,10 @@
       "disk_size": 40960,
       "guest_os_type": "ubuntu-64",
       "http_directory": "http",
-      "iso_checksum": "7540ace2d6cdee264432f5ed987236d32edef798",
-      "iso_checksum_type": "sha1",
-      "iso_url": "{{user `iso`}}/ubuntu/12.04/ubuntu-12.04.5-server-amd64.iso",
-      "output_directory": "packer-ubuntu-12.04-amd64-vmware",
+      "iso_checksum": "946a6077af6f5f95a51f82fdc44051c7aa19f9cfc5f737954845a6050543d7c2",
+      "iso_checksum_type": "sha256",
+      "iso_url": "{{user `iso`}}/ubuntu/14.04/ubuntu-14.04.1-server-amd64.iso",
+      "output_directory": "packer-ubuntu-14.04-amd64-vmware",
       "shutdown_command": "echo 'travis'|sudo -S shutdown -P now",
       "ssh_password": "travis",
       "ssh_port": 22,
@@ -97,7 +97,7 @@
       "ssh_wait_timeout": "10000s",
       "tools_upload_flavor": "linux",
       "type": "vmware-iso",
-      "vm_name": "packer-ubuntu-12.04-amd64",
+      "vm_name": "packer-ubuntu-14.04-amd64",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
         "memsize": "2048",
@@ -125,7 +125,7 @@
         " netcfg/get_domain=vm<wait>",
         " netcfg/get_hostname=travis<wait>",
         " noapic<wait>",
-        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu-12.04/preseed-travis.cfg<wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu-14.04/preseed-travis.cfg<wait>",
         " -- <wait>",
         "<enter><wait>"
       ],
@@ -134,10 +134,10 @@
       "parallels_tools_flavor": "lin",
       "guest_os_type": "ubuntu",
       "http_directory": "http",
-      "iso_checksum": "7540ace2d6cdee264432f5ed987236d32edef798",
-      "iso_checksum_type": "sha1",
-      "iso_url": "{{user `iso`}}/ubuntu/12.04/ubuntu-12.04.5-server-amd64.iso",
-      "output_directory": "packer-ubuntu-12.04-amd64-parallels",
+      "iso_checksum": "946a6077af6f5f95a51f82fdc44051c7aa19f9cfc5f737954845a6050543d7c2",
+      "iso_checksum_type": "sha256",
+      "iso_url": "{{user `iso`}}/ubuntu/14.04/ubuntu-14.04.1-server-amd64.iso",
+      "output_directory": "packer-ubuntu-14.04-amd64-parallels",
       "shutdown_command": "echo 'travis'|sudo -S shutdown -P now",
       "ssh_password": "travis",
       "ssh_port": 22,
@@ -159,13 +159,13 @@
         ]
       ],
       "prlctl_version_file": ".prlctl_version",
-      "vm_name": "packer-ubuntu-12.04-amd64"
+      "vm_name": "packer-ubuntu-14.04-amd64"
     }
 
   ],
   "post-processors": [
     {
-      "output": "../builds/{{.Provider}}/travis_ubuntu-12.04_chef-{{user `chef_version`}}.box",
+      "output": "../builds/{{.Provider}}/travis_ubuntu-14.04_chef-{{user `chef_version`}}.box",
       "type": "vagrant"
     }
   ],
@@ -174,7 +174,7 @@
       "environment_vars": [
         "CHEF_VERSION={{user `chef_version`}}"
       ],
-      "execute_command": "echo 'travis' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "execute_command": "echo 'travis'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
       "scripts": [
         "scripts/ubuntu/update.sh",
         "scripts/common/sshd.sh",
@@ -187,104 +187,11 @@
         "scripts/common/minimize.sh"
       ],
       "type": "shell"
-    },
-    {
-      "type": "chef-solo",
-      "cookbook_paths": [
-        "../../travis-cookbooks/ci_environment"
-      ],
-      "json": {
-        "rvm":{
-          "default":"1.9.3",
-          "rubies":[
-            {
-              "name":"1.9.3"
-            }
-          ],
-          "gems":[
-            "bundler",
-            "rake"
-          ]
-        },
-        "golang":{
-          "multi":{
-            "versions":[
-              "go1.3.3"
-            ],
-            "aliases":[],
-            "default_version":"go1.3.3"
-          }
-        },
-        "travis_build_environment":{
-          "use_tmpfs_for_builds": false
-        }
-      },
-      "run_list": [
-        "travis_build_environment",
-        "apt",
-        "package-updates",
-        "build-essential",
-        "clang::tarball",
-        "golang::multi",
-        "networking_basic",
-        "openssl",
-        "sysctl",
-        "git::ppa",
-        "mercurial",
-        "bazaar",
-        "subversion",
-        "scons",
-        "unarchivers",
-        "md5deep",
-        "dictionaries",
-        "jq",
-        "libqt4",
-        "libgdbm",
-        "libncurses",
-        "libossp-uuid",
-        "libffi",
-        "ragel",
-        "imagemagick",
-        "mingw32",
-        "libevent",
-        "java",
-        "ant",
-        "maven",
-        "sqlite",
-        "rvm",
-        "rvm::multi",
-        "python",
-        "python::devshm",
-        "python::pip",
-        "nodejs::multi",
-        "mysql::server_on_ramfs",
-        "postgresql",
-        "redis",
-        "riak",
-        "mongodb",
-        "couchdb::ppa",
-        "memcached",
-        "neo4j-server::tarball",
-        "cassandra::tarball",
-        "rabbitmq::with_management_plugin",
-        "zeromq::ppa",
-        "elasticsearch",
-        "sphinx::all",
-        "xserver",
-        "firefox::tarball",
-        "chromium",
-        "phantomjs::tarball",
-        "emacs::nox",
-        "vim",
-        "system_info",
-        "sweeper"
-      ]
     }
   ],
   "variables": {
     "chef_version": "latest",
     "mirror": "http://releases.ubuntu.com",
-    "iso": "../iso/"
+    "iso": "../iso"
   }
 }
-

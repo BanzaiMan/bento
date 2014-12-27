@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'yaml'
+require 'active_support'
+
+ubuntu_release = ARGV[0] || '12.04'
+input_file  = "ubuntu-#{ubuntu_release}-amd64-travis.json.in"
+output_file = "ubuntu-#{ubuntu_release}-amd64-travis.json"
+
+json = JSON.load(File.read(File.join(File.dirname(__FILE__), 'packer', input_file)))
+
+yaml_common   = YAML.load_file(File.join(File.dirname(__FILE__), '..', 'travis-cookbooks', 'vm_templates', 'common', 'standard.yml'))
+yaml_standard = YAML.load_file(File.join(File.dirname(__FILE__), '..', 'travis-cookbooks', 'vm_templates', 'standard', 'standard.yml'))
+
+travis_provisioner = {
+  'type'           => 'chef-solo',
+  'cookbook_paths' => [ "../../travis-cookbooks/ci_environment" ],
+  'json'           => ( yaml_common['json']    || {} ).deep_merge( yaml_standard['json']    || {} ),
+  'run_list'       => ( yaml_common['recipes'] || [] ).concat(     yaml_standard['recipes'] || [] )
+}
+
+json['provisioners'] << travis_provisioner
+
+File.write(File.join(File.dirname(__FILE__), 'packer', output_file), JSON.pretty_generate(json))
